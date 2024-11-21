@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material'
+import { Stack, useMediaQuery } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
@@ -6,25 +6,29 @@ import { FaSearch } from "react-icons/fa";
 import { RiEditBoxLine } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
-
+import { FaArrowLeft } from "react-icons/fa";
 
 const Navbar = () => {
+  const _700 = useMediaQuery("(min-width:700px")
+  const _300 = useMediaQuery("(min-width:300px")
+
   return (
     <Stack flexDirection={"row"} justifyContent={"space-around"} >
-      <Link to={"/"} >
-        <FaHome size={36} />
+      <FaArrowLeft className='image-icon' color='black' size={_300 ? 24 : 40} />
+      <Link color='black' className='link' to={"/"} >
+        <FaHome size={_300 ? 36 : 24} />
       </Link>
-      <Link to={"/search"}  >
-        <FaSearch size={36} />
+      <Link color='black' className='link' to={"/search"}  >
+        <FaSearch size={_300 ? 36 : 24} />
       </Link>
-      <Link to={"/edit"} >
-        <RiEditBoxLine size={36} />
+      <Link color='black' className='link' to={"/edit"} >
+        <RiEditBoxLine size={_300 ? 36 : 24} />
       </Link>
-      <Link>
-        <CiHeart size={36} />
+      <Link color='black' className='link' >
+        <CiHeart size={_300 ? 36 : 24} />
       </Link>
-      <Link>
-        <VscAccount size={36} />
+      <Link color='black' className='link' to={"/profile/threads/1"} >
+        <VscAccount size={_300 ? 36 : 24} />
       </Link>
     </Stack>
   )

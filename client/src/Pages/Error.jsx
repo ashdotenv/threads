@@ -1,7 +1,9 @@
 import { Button, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Error = () => {
+    const navigate = useNavigate()
     return (
         <Stack sx={{
             background: 'url("error-bg.png")',
@@ -19,7 +21,9 @@ const Error = () => {
             >
                 <Typography variant='h3' >Oops</Typography>
                 <Typography variant='h6' >You Entered Wrong Location</Typography>
-                <Button size='large' sx={{ ":hover:": { bgcolor: "red", cursor: "pointer" }, p: 2, bgcolor: "blue", color: "white", borderRadius: "10px" }} >Goto Home</Button>
+                <Button onClick={()=>navigate(-1)} size='large' sx={{ ":hover:": { bgcolor: "red", cursor: "pointer" }, p: 2, bgcolor: "blue", color: "white", borderRadius: "10px" }} >
+                        Goto Home
+                </Button>
             </Stack>
         </Stack>
     )
