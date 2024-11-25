@@ -1,15 +1,21 @@
 import { Button, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLoginMutation } from '../redux/service';
 
 const Login = () => {
     const [credintials, setCrendintials] = useState({ email: "", password: "" });
+    const [setLogin, { isError, isLoading, isSuccess, data }] = useLoginMutation()
     const handleLogin = () => {
+        setLogin(credintials)
         console.log(credintials);
     };
-    
+
     const _700 = useMediaQuery("(min-width:700px)");
-    
+    useEffect(() => {
+        console.log(data);
+    }, [isSuccess])
+
     return (
         <Stack
             width={"100%"}

@@ -3,6 +3,9 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '../../Components/Header'
 import AddPost from '../../Components/Modals/AddPost'
+import EditProfile from '../../Components/Modals/EditProfile'
+import MainMenu from '../../Components/Menu/MainMenu'
+import MyMenu from '../../Components/Menu/MyMenu'
 
 const ProtectedLayout = () => {
     const _700 = useMediaQuery("(min-width:700px)")
@@ -13,6 +16,10 @@ const ProtectedLayout = () => {
             mx={"auto"}
             overflow={"hidden"}
         >
+            <EditProfile />
+            <MainMenu />
+            <MyMenu />
+            <AddPost />
             <Header />
             <Outlet />
         </Stack>

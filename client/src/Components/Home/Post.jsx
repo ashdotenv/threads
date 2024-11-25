@@ -3,8 +3,14 @@ import React from 'react'
 import { IoIosMore } from "react-icons/io";
 import PostOne from '../Post/PostOne';
 import PostTwo from '../Post/PostTwo';
+import { useDispatch } from 'react-redux';
+import { toggleMyMenu } from '../../redux/slice';
 
 const Post = () => {
+    const dispatch = useDispatch()
+    const handleOpenMenu = (e) => {
+        dispatch(toggleMyMenu(e.currentTarget))
+    }
     return (
         <Stack
             flexDirection={"row"}
@@ -40,7 +46,7 @@ const Post = () => {
                 <Typography variant='caption' color='GrayText' fontSize={"1rem"}>
                     <p>Menu</p>
                 </Typography>
-                <IoIosMore size={28} />
+                <IoIosMore size={28} onClick={handleOpenMenu} />
             </Stack>
         </Stack>
     )

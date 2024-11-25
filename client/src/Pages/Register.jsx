@@ -1,12 +1,16 @@
 import { Button, Stack, TextField, Typography, useMediaQuery } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSigninMutation } from '../redux/service'
 
 const Register = () => {
-    const [credintials, setCrendintials] = useState({ username: "", email: "", password: "" })
-    const handleRegister = () => {
+    const [credintials, setCrendintials] = useState({ userName: "", email: "", password: "" })
+    const [signin, signinData] = useSigninMutation()
+    const handleRegister = async () => {
         console.log(credintials);
+        await signin(credintials)
     }
+  
     const _700 = useMediaQuery("(min-width:700px)")
     return (
         <Stack
@@ -20,7 +24,7 @@ const Register = () => {
         >
             <Stack flexDirection={"column"} width={"40%"} gap={2} mt={_700 ? 20 : 9} >
                 <Typography variant='h5' alignSelf={"center"} fontSize={_700 ? "1.5rem" : "1rem"} fontWeight={"bold"} >Register With Email</Typography>
-                <TextField onChange={(e) => setCrendintials({ ...credintials, username: e.target.value })} placeholder='Enter Your Username' ></TextField>
+                <TextField onChange={(e) => setCrendintials({ ...credintials, userName: e.target.value })} placeholder='Enter Your Username' ></TextField>
                 <TextField onChange={(e) => setCrendintials({ ...credintials, email: e.target.value })} placeholder='Enter Your Email' ></TextField>
                 <TextField onChange={(e) => setCrendintials({ ...credintials, password: e.target.value })} placeholder='Enter Your Password' ></TextField>
                 <Button onClick={handleRegister} size='large' sx={{

@@ -1,7 +1,15 @@
-import { Avatar, Button, Stack, Typography } from '@mui/material'
+import { Avatar, Button, Stack, Typography, Box } from '@mui/material'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addPostModal } from '../../redux/slice'
 
 const Input = () => {
+    const dispatch = useDispatch()
+
+    const handleAddPost = () => {
+        dispatch(addPostModal(true))
+    }
+
     return (
         <Stack
             flexDirection={"row"}
@@ -14,13 +22,28 @@ const Input = () => {
             my={5}
             mx={"auto"}
         >
-            <Stack flexDirection={"row"} alignItems={"center"} justifyContent={"space-between"} gap={2} >
+            {/* Clickable Stack */}
+            <Stack 
+                flexDirection={"row"} 
+                alignItems={"center"} 
+                justifyContent={"space-between"} 
+                gap={2} 
+                onClick={handleAddPost} // Add onClick event here
+                sx={{ cursor: "pointer" }} // Optional: Add cursor pointer for better UX
+            >
                 <Avatar />
-                <Typography color='GrayText' >
-                    Start a Thred
+                <Typography color='GrayText'>
+                    Start a Thread
                 </Typography>
             </Stack>
-            <Button size='medium' sx={{ bgcolor: "gray", color: "aliceblue" }} >Post</Button>
+            
+            <Button 
+                size='medium' 
+                sx={{ bgcolor: "gray", color: "aliceblue" }}
+                onClick={handleAddPost} // Add optional onClick for button
+            >
+                Post
+            </Button>
         </Stack>
     )
 }

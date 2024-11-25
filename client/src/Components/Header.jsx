@@ -3,7 +3,13 @@ import React from 'react'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import { IoMenu } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
+import { toggleMainMenu } from '../redux/slice';
 const Header = () => {
+    const dispatch = useDispatch()
+    const handleOpenMenu = (e) => {
+        dispatch(toggleMainMenu(e.currentTarget)) 
+    }
     const _700 = useMediaQuery("(min-width:700px")
     return (
         <>
@@ -26,7 +32,7 @@ const Header = () => {
                     height={96}>
                     <Navbar />
                 </Stack>
-                <IoMenu size={36} />
+                <IoMenu onClick={handleOpenMenu} size={36} />
             </Stack> : <>
                 <Stack
                     bottom={0}

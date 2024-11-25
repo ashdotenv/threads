@@ -2,10 +2,15 @@ import { Avatar, Box, Button, Dialog, DialogContent, DialogTitle, Stack, Typogra
 import React, { useRef, useState } from 'react';
 import { RxCross2 } from "react-icons/rx";
 import { FaImages } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { addPostModal } from '../../redux/slice';
 
 const AddPost = () => {
+    const { openAddPostModal } = useSelector(state => state.service)
+
+    const dispatch = useDispatch()
     const handleClose = () => {
-        // Close dialog logic here
+        dispatch(addPostModal(false))
     };
     const mediaRef = useRef()
 
@@ -15,7 +20,7 @@ const AddPost = () => {
     const [media, setMedia] = useState()
     return (
         <Dialog
-            open={true}
+            open={openAddPostModal}
             onClose={handleClose}
             maxWidth="sm"
             fullWidth
